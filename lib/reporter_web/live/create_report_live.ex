@@ -23,7 +23,12 @@ defmodule ReporterWeb.CreateReportLive do
     |> Incidents.create()
     |> case do
       {:ok, _incident} ->
-        {:noreply, push_redirect(socket, to: "/")}
+        socket =
+          socket
+          |> put_flash(:info, "Thank you. Your report has been submitted for approval")
+          |> push_redirect(to: "/")
+
+        {:noreply, socket}
     end
   end
 end

@@ -33,8 +33,28 @@ defmodule Reporter.Incidents do
   def approve(interest) do
     interest
     |> Incident.approve_changeset()
-    |> Repo.update()
+    |> Repo.delete()
     |> notify(:approve_incident)
+  end
+
+  def delete(interest) do
+    interest
+    |> Repo.delete()
+    |> notify(:delete_incident)
+  end
+
+  defp notify({:ok, incident} = res, :delete_incident) do
+    %{
+      id: Ecto.UUID.generate(),
+      topic: :incident_deleted,
+      data: incident
+    }
+    |> EventSource.build do
+      incident
+    end
+    |> EventBus.notify()
+
+    res
   end
 
   defp notify({:ok, incident} = res, :approve_incident) do

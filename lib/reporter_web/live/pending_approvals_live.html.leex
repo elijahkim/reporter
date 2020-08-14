@@ -20,8 +20,12 @@
           </a>
         </div>
         <div class="mt-4">
-          <a href="#" phx-value-id="<%= incident.id %>" phx-click="approve" class="text-blue-700 text-base">
+          <a href="#" phx-value-id="<%= incident.id %>" phx-click="approve" class="mr-5 text-blue-700 text-base">
             Approve
+          </a>
+
+          <a href="#" phx-value-id="<%= incident.id %>" phx-click="reject" class="text-red-700 text-base">
+            Reject
           </a>
         </div>
       </div>
