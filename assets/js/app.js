@@ -51,25 +51,29 @@ Hooks.InfiniteScroll = {
     return this.el.dataset.page;
   },
   mounted() {
-    const target = document.querySelector("#scroller");
-    const options = {
-      rootMargin: "150px",
-      threshold: 1.0,
-    };
-
-    const observer = new IntersectionObserver(() => {
-      this.pushEvent("load-more", {});
-    }, options);
-
-    observer.observe(target);
     this.pending = this.page();
-  },
-  reconnected() {
-    this.pending = this.page();
+    window.addEventListener("scroll", (e) => {
+      if (this.pending == this.page() && scrollAt() > 90) {
+        this.pending = this.page() + 1;
+        this.pushEvent("load-more", {});
+      }
+    });
   },
   updated() {
     this.pending = this.page();
   },
+  //   const target = document.querySelector("#scroller");
+  //   const options = {
+  //     rootMargin: "150px",
+  //     threshold: 1.0,
+  //   };
+  //
+  //   const observer = new IntersectionObserver(() => {
+  //     this.pushEvent("load-more", {});
+  //   }, options);
+  //
+  //   observer.observe(target);
+  // },
 };
 
 let csrfToken = document
