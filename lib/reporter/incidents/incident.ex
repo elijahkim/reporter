@@ -7,6 +7,8 @@ defmodule Reporter.Incidents do
   import Ecto.Query
 
   def all(opts \\ []) do
+    IO.inspect(opts)
+
     Incident
     |> order_by(desc: :inserted_at)
     |> Repo.paginate(opts)
