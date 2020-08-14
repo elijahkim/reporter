@@ -10,6 +10,8 @@ use Mix.Config
 config :reporter,
   ecto_repos: [Reporter.Repo]
 
+config :reporter, Reporter.Repo, migration_primary_key: [name: :id, type: :binary_id]
+
 # Configures the endpoint
 config :reporter, ReporterWeb.Endpoint,
   url: [host: "localhost"],
@@ -25,6 +27,8 @@ config :logger, :console,
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
+
+config :event_bus, topics: [:incident_created]
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

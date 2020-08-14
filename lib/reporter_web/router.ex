@@ -17,7 +17,8 @@ defmodule ReporterWeb.Router do
   scope "/", ReporterWeb do
     pipe_through :browser
 
-    live "/", PageLive, :index, layout: {ReporterWeb.LayoutView, :home}
+    live "/", PageLive, :index
+    live "/report", CreateReportLive
   end
 
   # Other scopes may use custom stacks.

@@ -9,6 +9,8 @@ defmodule Reporter.Application do
     children = [
       # Start the Ecto repository
       Reporter.Repo,
+      # Start the metadata archiver
+      Reporter.Events.Archiver,
       # Start the Telemetry supervisor
       ReporterWeb.Telemetry,
       # Start the PubSub system
