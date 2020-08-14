@@ -7,6 +7,7 @@ defmodule Reporter.Repo.Migrations.CreateIncidents do
       add(:description, :string, size: 100_000)
       add(:image, :string)
       add(:title, :string)
+      add(:approved_at, :naive_datetime_usec)
       timestamps()
     end
   end

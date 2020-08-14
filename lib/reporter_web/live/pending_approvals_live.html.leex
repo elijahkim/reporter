@@ -1,0 +1,35 @@
+<div class="flex lg:p-20 justify-center items-center flex-col content-around">
+  <h1 class="text-3xl mb-10">
+    Pending Approval
+  </h1>
+
+  <%= for incident <- @entries do %>
+    <div class="max-w-xl lg:rounded overflow-hidden shadow-lg mb-5" id="<%= incident.id %>">
+      <img class="w-full" src="<%= incident.image %>"/>
+      <div class="px-6 py-4">
+        <div class="font-bold text-xl mb-2">
+          <%= incident.title %>
+        </div>
+        <p class="text-gray-700 text-base">
+          <%= incident.description %>
+        </p>
+
+        <div class="mt-4">
+          <a href="<%= incident.source %>" class="text-blue-700 text-base">
+            Read More
+          </a>
+        </div>
+        <div class="mt-4">
+          <a href="#" phx-value-id="<%= incident.id %>" phx-click="approve" class="text-blue-700 text-base">
+            Approve
+          </a>
+        </div>
+      </div>
+      <div class="mx-6 my-3">
+        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#photography</span>
+        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#travel</span>
+        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">#winter</span>
+      </div>
+    </div>
+  <% end %>
+</div>

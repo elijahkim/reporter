@@ -19,6 +19,7 @@ defmodule ReporterWeb.Router do
 
     live "/", PageLive, :index
     live "/report", CreateReportLive
+    live "/pending", PendingApprovalsLive
   end
 
   # Other scopes may use custom stacks.

@@ -6,6 +6,7 @@ defmodule Reporter.Incidents.Schema.Incident do
     field :description, :string
     field :title, :string
     field :image, :string
+    field :approved_at, :naive_datetime_usec
 
     timestamps()
   end
@@ -18,5 +19,11 @@ defmodule Reporter.Incidents.Schema.Incident do
   def changeset(incident, params) do
     incident
     |> cast(params, [:description, :title, :image])
+  end
+
+  def approve_changeset(incident) do
+    incident
+    |> cast(%{}, [])
+    |> put_change(:approved_at, NaiveDateTime.utc_now())
   end
 end
