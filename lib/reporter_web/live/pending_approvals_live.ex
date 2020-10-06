@@ -29,7 +29,7 @@ defmodule ReporterWeb.PendingApprovalsLive do
     %{entries: entries} = socket.assigns
     incident = Enum.find(entries, &(&1.id == id))
 
-    case Incidents.delete(incident) do
+    case Incidents.reject(incident) do
       {:ok, incident} ->
         entries = Enum.reject(entries, &(&1.id == id))
         socket = put_flash(socket, :info, "Rejected #{incident.id}")

@@ -33,13 +33,14 @@ defmodule Reporter.Incidents do
   def approve(interest) do
     interest
     |> Incident.approve_changeset()
-    |> Repo.delete()
+    |> Repo.update()
     |> notify(:approve_incident)
   end
 
-  def delete(interest) do
+  def reject(interest) do
     interest
-    |> Repo.delete()
+    |> Incident.reject_changeset()
+    |> Repo.update()
     |> notify(:delete_incident)
   end
 
